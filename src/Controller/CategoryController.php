@@ -1,5 +1,9 @@
 <?php
 // src/Controller/CategoryController.php
+// This controller manages the category creation functionality.
+// It lets the user create a category for then store it on the data base
+
+
 
 namespace App\Controller;
 
