@@ -12,7 +12,8 @@ cp .env.test .env
 
 Run migrations to create the necessary database tables: 
 
-php bin/console doctrine:database:create php bin/console doctrine:migrations:migrate
+php bin/console doctrine:database:create 
+php bin/console doctrine:migrations:migrate
 
 Start the server: 
 
