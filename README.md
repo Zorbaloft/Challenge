@@ -1,4 +1,5 @@
-#Challange The objective of this challenge is to implement functionality for image uploading and cropping, enabling users to manage and optimize image content efficiently.
+#Challange 
+The objective of this challenge is to implement functionality for image uploading and cropping, enabling users to manage and optimize image content efficiently.
 
 🚀 Quick Start 
 Install dependencies via Composer: 
