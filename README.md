@@ -19,7 +19,7 @@ Compile SCSS:
 
 php bin/console sass:build
 
-php bin/console sass:build --watch
+
 
 Start the server: 
 
