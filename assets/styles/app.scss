@@ -1,0 +1,57 @@
+/* assets/styles/app.scss */
+$lightgrey: lightgrey;
+$blue: #3498db;
+$green: #2ecc71;
+$grey: #7f8c8d;
+$font-stack: "Helvetica Neue", Helvetica, Arial, sans-serif;
+@import "../../vendor/twbs/bootstrap/scss/bootstrap";
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background: $lightgrey;
+  font-family: $font-stack;
+  color: #333;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background: $blue;
+  padding: 20px;
+  text-align: center;
+  color: white;
+}
+
+footer {
+  background: $grey;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  margin-top: auto;
+}
+
+.container {
+  flex: 1;
+}
+
+
+.action-button {
+  font: inherit;
+  font-size: 1.25rem;
+  padding: 1em;
+  width: 100%;
+  font-weight: 500;
+  background-color: #6658d3;
+  border-radius: 6px;
+  color: #fff;
+  border: 0;
+  &:focus {
+    outline: 0;
+  }
+}
+

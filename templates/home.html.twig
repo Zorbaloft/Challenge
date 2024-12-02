@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="container">
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success">{{ message }}</div>
+		{% endfor %}
+		{% for message in app.flashes('error') %}
+			<div class="alert alert-danger">{{ message }}</div>
+		{% endfor %}
+		<div class="row">
+			<div class="col-md-6">
+				<div class="card mt-5">
+					<div class="card-header">
+						<h2 class="card-heading fw-bold">Get Started</h2>
+						<small>Create a category if you don't have one. Then upload your file (Dont forget to choose your category).</small>
+					</div>
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-6 border-end  border-black border-3">
+								{{ form_start(categoryForm, {'attr': {'class': 'form-horizontal'}}) }}
+								<div class="form-group">
+									{{ form_label(categoryForm.name, null, {'label_attr': {'class': 'control-label'}}) }}
+									{{ form_widget(categoryForm.name, {'attr': {'class': 'form-control'}}) }}
+									{{ form_errors(categoryForm.name) }}
+								</div>
+								<div class="form-group">
+									<button type="submit" class="action-button mt-3">Create</button>
+								</div>
+								{{ form_end(categoryForm) }}
+							</div>
+							<div class="col-md-5 ">
+								{{ form_start(form, {'attr': {'enctype': 'multipart/form-data', 'class': 'form-horizontal'}}) }}
+								{{ form_widget(form) }}
+								<button type="submit" class="action-button mt-3">Upload</button>
+								{{ form_end(form) }}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 mt-5">
+				<div class="card ">
+					<div class="card-header">
+						<h1 class="fw-bold">Gallery</h1>
+					</div>
+					<div class="card-body">
+						<div class="form-group">
+							<label for="categorySelect">Select Category:</label>
+							<select id="categorySelect" class="form-control">
+								<option value="">All Categories</option>
+								{% for category in categories %}
+									<option value="{{ category.id }}">{{ category.name }}</option>
+								{% endfor %}
+							</select>
+						</div>
+						{% for category in categories %}
+							<div class="category-gallery" data-category-id="{{ category.id }}">
+								<h2>{{ category.name }}</h2>
+								<div class="image-gallery row">
+									{% for image in category.images %}
+										<div class="col-md-3">
+											<img src="/uploads/{{ image.filePath }}" alt="Image" class="img-fluid">
+										</div>
+									{% else %}
+										<p>No images available for this category.</p>
+									{% endfor %}
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script></script>
+{% endblock %}

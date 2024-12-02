@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 class="text-center">Crop Image</h1>
+            {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                <div class="form-group">
+                    {{ form_widget(form) }}
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-secondary mt-3">Crop</button>
+                </div>
+            {{ form_end(form) }}
+
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success mt-3">{{ message }}</div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-danger mt-3">{{ message }}</div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
