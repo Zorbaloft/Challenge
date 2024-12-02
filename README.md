@@ -15,11 +15,10 @@ Run migrations to create the necessary database tables:
 php bin/console doctrine:database:create 
 
 php bin/console doctrine:migrations:migrate
+
 Compile SCSS: 
 
 php bin/console sass:build
-
-
 
 Start the server: 
 
