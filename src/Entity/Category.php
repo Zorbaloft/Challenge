@@ -1,4 +1,8 @@
 <?php
+    // This class defines a "Category" entity with a One-to-Many relationship to the "Image" entity. 
+    // A category can have multiple associated images, managed using a Doctrine Collection. 
+    // The `mappedBy: 'category'` indicates that the "category" property in the "Image" entity owns the relationship. 
+    // The `$images` property is initialized as an `ArrayCollection` to handle related images.
 
 namespace App\Entity;
 
