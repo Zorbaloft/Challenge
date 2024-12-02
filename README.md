@@ -15,14 +15,17 @@ Run migrations to create the necessary database tables:
 php bin/console doctrine:database:create 
 
 php bin/console doctrine:migrations:migrate
+Compile SCSS: 
+
+php bin/console sass:build
+
+php bin/console sass:build --watch
 
 Start the server: 
 
 symfony server:start
 
-Compile SCSS: 
 
-php bin/console sass:build --watch
 
 🔧 Usage 
 
