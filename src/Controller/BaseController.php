@@ -1,5 +1,14 @@
 <?php
 
+// This controller manages the image upload and cropping functionality.
+// It uses two libraries: 
+// 1. Crop: for handling the cropping of the image.
+// 2. Imagine: for compressing the cropped image to reduce file size.
+// The process involves uploading the image, cropping it to the desired dimensions, 
+// and then saving the cropped image after compression.
+
+
+
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,9 +34,13 @@ class BaseController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
+    // Create the upload function
+    
     #[Route('/', name: 'home')]
     public function upload(Request $request, EntityManagerInterface $em): Response
     {
+        // Create the upload form
+        
         $form = $this->createForm(ImageType::class);
         $form->handleRequest($request);
 
@@ -83,6 +96,8 @@ class BaseController extends AbstractController
         ]);
     }
 
+    // Create the crop funtion
+    
     #[Route('/crop/{fileName}/{category}', name: 'crop_image')]
     public function crop(CropperInterface $cropper, Request $request, string $fileName, int $category, EntityManagerInterface $em): Response
     {
@@ -115,6 +130,8 @@ class BaseController extends AbstractController
 
         $form->handleRequest($request);
 
+        // Compress the image to a maximum size of 200 KB
+        
         if ($form->isSubmitted() && $form->isValid()) {
             // Get the cropped image data (as a string)
             $croppedImage = $crop->getCroppedImage();
@@ -124,11 +141,16 @@ class BaseController extends AbstractController
             $croppedFilePath = $uploadDir . '/' . $croppedFileName;
             file_put_contents($croppedFilePath, $croppedImage);
 
+             // Initialize the Imagine library to handle image compression
             // Compress the image to a maximum size of 200 KB
+            
             $imagine = new Imagine();
             $image = $imagine->open($croppedFilePath);
             $quality = 90;
 
+             // Reduce JPEG quality iteratively until the file size is within the 200 KB limit
+            // or the quality reaches a minimum threshold of 10
+            
             while (filesize($croppedFilePath) > 200 * 1024 && $quality > 10) {
                 $image->save($croppedFilePath, ['jpeg_quality' => $quality]);
                 $quality -= 5;
