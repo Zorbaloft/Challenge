@@ -1,5 +1,11 @@
 <?php
 
+    // This class defines an "Image" entity with a Many-to-One relationship to the "Category" entity. 
+    // Each image belongs to a single category, specified by the `$category` property. 
+    // The `inversedBy: 'images'` indicates that the "images" property in the "Category" entity references this relationship. 
+    // The `#[ORM\JoinColumn(nullable: false)]` ensures that every image must have an associated category.
+
+
 namespace App\Entity;
 
 use App\Repository\ImageRepository;
